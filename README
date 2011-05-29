@@ -1,0 +1,29 @@
+Simple class implementing enums for Python.
+
+Typical usage: when translating C headers into ctypes wrappers.
+
+Example:
+C code:
+    enum foo {
+        F_FOO,
+        F_BAR = 10,
+        F_BAZ,
+        LAST_FOO = F_BAZ
+    };
+
+Python equivalent:
+
+    >>> foo = Enum([
+    ...     ('F_FOO', None),
+    ...     ('F_BAR', 10),
+    ...     ('F_BAZ', None),
+    ... ])
+    ...
+    >>> LAST_FOO = F_BAZ
+
+Also, you can turn a value back into its symbolic name:
+    >>> hoge = F_BAZ
+    >>> print foo(hoge)
+    F_BAZ
+This is especially useful for error logging.
+
