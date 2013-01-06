@@ -3,7 +3,12 @@ class Enum(object):
         forward_dict = {}
         reverse_dict = {}
         next_value = 0
-        for name, value in member_list:
+        for member in member_list:
+            if isinstance(member, basestring):
+                name = member
+                value = None
+            else:
+                name, value = member
             if value is None:
                 value = next_value
             if name in forward_dict:
